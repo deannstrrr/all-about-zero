@@ -1,11 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dark-bg: #333333;
+            --card-bg: #3c3c3c;
+            --text-color: #e0e0e0;
+            --highlight-pink: #ff66aa;
+            --header-purple: #9955ee;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            background-image: 
+                repeating-linear-gradient(
+                    135deg, 
+                    rgba(255, 255, 255, 0.05) 0px, 
+                    rgba(255, 255, 255, 0.05) 4px, 
+                    transparent 4px, 
+                    transparent 24px
+                ),
+                repeating-linear-gradient(
+                    45deg, 
+                    rgba(0, 0, 0, 0.2) 0px, 
+                    rgba(0, 0, 0, 0.2) 2px, 
+                    transparent 2px, 
+                    transparent 15px
+                );
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        .main-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--dark-bg);
+            border-radius: 8px;
+        }
+
+        .header-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-link {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .header-link:hover {
+            color: var(--highlight-pink);
+        }
+        
+        .tab {
+            padding: 0.5rem 0.75rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .tab:hover {
+            color: var(--text-color);
+        }
+
+        .tab-active {
+            color: var(--text-color);
+            border-bottom: 2px solid var(--highlight-pink);
+        }
+        
+        .user-banner {
+            width: 100%;
+            height: 150px;
+            background-image: url('https://placehold.co/900x150/9955ee/ffffff?text=Purple+Watercolor+Banner');
+            background-size: cover;
+            background-position: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            position: relative;
+        }
+        
+        .user-info {
+            background-color: var(--card-bg);
+            padding: 1rem 1.5rem 0.5rem;
+            position: relative;
+        }
+        
+        .avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 3px solid white;
+            position: absolute;
+            top: -20px; 
+            left: 0.5rem;
+            z-index: 10;
+            /* Added to prevent stretching and maintain aspect ratio */
+            object-fit: cover; 
+        }
+
+        .user-stats {
+            display: flex;
+            gap: 1.5rem;
+            padding: 0.75rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .playlist-section {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+        
+        .playlist-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--highlight-pink);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
 <body>
-   <h1>Socials</h1>
+
+    <div class="main-container shadow-xl rounded-xl">
+        
+        <div class="header-section px-6">
+            <h1 class="text-xl font-bold flex items-center gap-2 text-white">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-3m-1.776-5.894l-5.694-5.694a1.5 1.5 0 00-2.121 0L3 13.88l-.707.707a2 2 0 000 2.828l1.414 1.414a2 2 0 002.828 0l.707-.707 5.694-5.694a1.5 1.5 0 000-2.121z"></path></svg>
+                Know more about me!
+            </h1>
+            <a href="index.html" class="header-link hover:text-white">&larr; Back to Home Page</a>
+        </div>
+        
+        <div class="flex px-6 border-b border-gray-700 mt-2">
+            <div class="tab tab-active">info</div>
+            <div class="tab">multiplayer</div>
+            <div class="tab">quick play</div>
+        </div>
+
+        <div class="user-card-wrapper mb-4">
+            <div class="user-banner">
+            </div>
+            <div class="user-info">
+                <img class="avatar" src="IMG_20251205_224811.jpg" onerror="this.src='https://placehold.co/110x110/222222/cccccc?text=Avatar';" alt="User Avatar">
+                
+                <div class="flex justify-between items-center ml-32 mt-2">
+                    <div>
+                        <h2 class="text-2xl font-extrabold text-white">Dean Nastor</h2>
+                        <p class="text-gray-400 flex items-center gap-1 text-sm">
+                            <span role="img" aria-label="Philippines flag">🇵🇭</span> Philippines
+                        </p>
+                    </div>
+                    <button class="text-gray-400 hover:text-white transition duration-150">
+                        <svg class="w-6 h-6 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+                    </button>
+                </div>
+                
+                <div class="user-stats">
+                    <div class="stat-item">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        1
+                    </div>
+                    <div class="stat-item">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path></svg>
+                        0
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="playlist-section">
+            <div class="playlist-title">Background</div>
+            
+            <p class="text-pink-300 font-semibold mb-2">
+                • Active
+            </p>
+            <p class="text-white-500 italic mb-4 text-sm">
+                - 20 years-old
+            </p>
+
+            <p class="text-white-500 italic mb-4 text-sm">
+                - A first-year student in CIIT College of Arts and Science taking the course Information Systems
+            </p>
+
+            <p class="text-white-500 italic mb-4 text-sm">
+                - Lives in Quezon City
+            </p>
+
+            <p class="text-white-500 italic mb-4 text-sm">
+                - Plays guitar
+            </p>
+
+            <p class="text-white-500 italic mb-4 text-sm">
+                - Likes cold weathers
+            </p>
+
+            <p class="text-white-500 italic mb-4 text-sm">
+                - Hates hot weathers
+            </p>
+
+
+            <p class="text-gray-300 font-semibold mb-2">
+                • Ended
+            </p>
+            <p class="text-gray-500 italic text-sm">
+                Not in any completed osu!(user) playlist games yet!
+            </p>
+        </div>
+
+    </div>
 </body>
 </html>
