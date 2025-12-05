@@ -1,73 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>My Web!</title>
-   <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Humble Abode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --osu-pink: #ff66aa;
+            --osu-purple: #9955ee;
+            --dark-bg: #333333;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            background-image: 
+                repeating-linear-gradient(
+                    135deg, 
+                    rgba(255, 255, 255, 0.05) 0px, 
+                    rgba(255, 255, 255, 0.05) 4px, 
+                    transparent 4px, 
+                    transparent 24px
+                ),
+                repeating-linear-gradient(
+                    45deg, 
+                    rgba(0, 0, 0, 0.2) 0px, 
+                    rgba(0, 0, 0, 0.2) 2px, 
+                    transparent 2px, 
+                    transparent 15px
+                );
+            transition: background-position 0.5s ease-in-out; 
+        }
+
+        .main-stage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: transform 0.5s ease-in-out; 
+            min-height: 100vh;
+        }
+
+        .main-stage.menu-open {
+            transform: translateX(-130px); 
+        }
+
+
+        .logo-container {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            cursor: pointer;
+            z-index: 10;
+            transition: transform 0.5s ease-in-out; 
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 
+                    0 0 25px rgba(255, 255, 255, 0.8),
+                    0 0 50px rgba(255, 255, 255, 0.5),
+                    0 0 80px rgba(255, 255, 255, 0.2);
+            }
+            100% {
+                box-shadow: 
+                    0 0 35px rgba(255, 255, 255, 1),
+                    0 0 70px rgba(255, 255, 255, 0.7),
+                    0 0 110px rgba(255, 255, 255, 0.4);
+            }
+        }
+
+        .logo-ring {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; 
+            border-radius: 50%;
+            background-color: var(--osu-pink);
+            
+            border: 10px solid white; 
+
+            box-shadow: 
+                0 0 25px rgba(255, 255, 255, 0.8),
+                0 0 50px rgba(255, 255, 255, 0.5),
+                0 0 80px rgba(255, 255, 255, 0.2);
+            
+            background-image: radial-gradient(circle at center, rgba(255,255,255,0.2) 5%, transparent 20%);
+            background-size: 100%;
+            animation: pulse-glow 2s infinite alternate ease-in-out;
+        }
+
+        .logo-text {
+            text-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.2), 
+                0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .menu {
+            width: 450px;
+            position: absolute;
+            left: calc(50% + 100px); 
+            opacity: 0; 
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transform: translateX(100px); 
+        }
+
+        .menu.active {
+            opacity: 1; 
+            pointer-events: auto;
+            transform: translateX(0); 
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: var(--osu-purple);
+            color: white;
+            padding: 10px 20px 10px 180px; 
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-left: 5px solid #ffffff33; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            transition: transform 0.1s ease, background-color 0.2s ease;
+            text-decoration: none;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.02);
+            background-color: #aa66ff;
+        }
+
+        .notification-box {
+            background-color: var(--osu-pink);
+            transition: opacity 0.5s ease-in-out;
+            border: 2px solid white;
+        }
+    </style>
 </head>
 <body>
-   <div class="circle">
-       <h1 class="me">
-           ME!
-       </h1>
-   </div>
-   
-   <div class="Background">
-   </div>
 
-   <div class="menu">
-    <div class="bars1">
-       <h1 class="section1">
-           Likes and Dislikes
-       </h1>
+    <div id="main-stage" class="main-stage">
+        <div id="logo-container" class="logo-container">
+            <div class="logo-ring flex items-center justify-center">
+                
+                <div class="logo-text text-white text-8xl font-extrabold tracking-wider select-none">
+                    Me!
+                </div>
+            </div>
+        </div>
+
+        <div id="main-menu" class="menu">
+            <a href="About-Me.html" class="menu-item" data-page="About Me!">
+                <span>About Me!</span>
+            </a>
+            
+            <div class="menu-item" data-page="Contact?">
+                <span>Contact?</span>
+            </div>
+            <div class="menu-item" data-page="Others!">
+                <span>Others!</span>
+            </div>
+        </div>
     </div>
 
-     <div class="bars2">
-       <h1 class="section2">
-           Hobbies
-       </h1>
-   </div>
+    <div id="notification-box" class="fixed bottom-4 right-4 text-white p-4 rounded-lg shadow-xl hidden opacity-0 z-50 notification-box">
+    </div>
 
-     <div class="bars3">
-       <h1 class="section3">
-           Address
-       </h1>
-   </div>
+    <script>
+        const logo = document.getElementById('logo-container');
+        const menu = document.getElementById('main-menu');
+        const stage = document.getElementById('main-stage');
+        const notificationBox = document.getElementById('notification-box');
 
-   <div class="bars4">
-       <h1 class="section4">
-           Educational Background
-       </h1>
-   </div>
+        function toggleMenu() {
+            const isMenuOpen = menu.classList.contains('active');
 
-    <div class="bars5">
-       <h1 class="section5">
-           <a href="socials.html" >Socials</a>
-       </h1>
-   </div>
+            if (isMenuOpen) {
+                menu.classList.remove('active');
+                stage.classList.remove('menu-open');
+            } else {
+                menu.classList.add('active');
+                stage.classList.add('menu-open');
+            }
+        }
 
-   <div class="bars6">
-       <h1 class="section6">
-           Friends
-       </h1>
-   </div>
+        function showNotification(message) {
+            notificationBox.textContent = message;
+            notificationBox.classList.remove('hidden');
+            setTimeout(() => {
+                notificationBox.classList.add('opacity-100');
+            }, 10);
+            
+            setTimeout(() => {
+                notificationBox.classList.remove('opacity-100');
+                notificationBox.classList.add('opacity-0');
+                setTimeout(() => notificationBox.classList.add('hidden'), 500); 
+            }, 3000);
+        }
 
-   <div class="bars7">
-       <h1 class="section7">
-           Fun Facts!
-       </h1>
-   </div>
+        logo.addEventListener('click', toggleMenu);
 
-   <div class="bars8">
-       <h1 class="section8">
-           Achievements
-       </h1>
-   </div>
-
-   </div>
-
-
-
+        document.querySelectorAll('#main-menu > *').forEach(item => {
+            item.addEventListener('click', function(event) {
+                const pageName = this.querySelector('span')?.textContent || this.dataset.page;
+                
+                if (item.tagName === 'A') {
+                    showNotification(`Navigating to '${pageName}'...`);
+                } else {
+                    showNotification(`Starting up the '${pageName}' feature...`);
+                    toggleMenu(); 
+                }
+            });
+        });
+    </script>
 </body>
 </html>
